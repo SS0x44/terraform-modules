@@ -45,7 +45,7 @@ resource "aws_launch_template" "gitlab_runner_launch_template" {
 
 # 📈 Auto Scaling Group
 resource "aws_autoscaling_group" "gitlab_runner_asg" {
-  name                      = var_asg_group_name
+  name                      = var.asg_group_name
   max_size                  = var.max_size
   min_size                  = var.min_size
   desired_capacity          = var.desired_capacity
@@ -63,4 +63,5 @@ resource "aws_autoscaling_group" "gitlab_runner_asg" {
     create_before_destroy = true
   }
 }
+
 
