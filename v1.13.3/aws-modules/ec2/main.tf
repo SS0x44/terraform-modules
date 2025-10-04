@@ -29,7 +29,7 @@ resource "aws_launch_template" "gitlab_runner_launch_template" {
   image_id                      = data.aws_ami.gitlab_runner_ami.id
   instance_type                 = var.instance_type
   update_default_version        = true
-  user_data                     = base64encode(file("${path.module}/scripts/required_packages.sh"))
+  user_data                     = base64encode(file("${path.module}/scripts/user_data.sh"))
   network_interfaces {
     associate_public_ip_address = false
     security_groups             = [aws_security_group.gitlab_runner_sg.id]
