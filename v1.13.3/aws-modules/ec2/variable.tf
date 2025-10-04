@@ -11,7 +11,7 @@ variable "namespace" {
   type        = string
   description = "Project namespace"
 }
-variable "env_tags" {
+variable "env_short" {
   type        = map(string)
   description = "Environment-specific tags"
 }
