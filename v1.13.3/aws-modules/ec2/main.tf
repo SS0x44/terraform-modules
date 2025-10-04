@@ -35,7 +35,7 @@ resource "aws_launch_template" "gitlab_runner_launch_template" {
     resource_type               = "instance"
     tags                        = {
       Name                      = var.gl_runner_name
-      Environment               = var.environment
+      Environment               = var.env_short
     }
   }
   lifecycle {
@@ -63,3 +63,4 @@ resource "aws_autoscaling_group" "gitlab_runner_asg" {
     create_before_destroy = true
   }
 }
+
