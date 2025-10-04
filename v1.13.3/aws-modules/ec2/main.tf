@@ -1,0 +1,65 @@
+# Security Group
+resource "aws_security_group" "gitlab_runner_sg" {
+  name        = var.runner_sg
+  description = "Security group for Gitlab runner EC2 instances"
+  vpc_id      = data.aws_vpc.default.id
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  tags = {
+    Name = var.runner_sg
+  }
+}
+
+# 🚀 Launch Template
+resource "aws_launch_template" "gitlab_runner_launch_template" {
+ depends_on                     = [aws_security_group.gitlab_runner_sg, data.aws_ami.gitlab_runner_ami]
+  image_id                      = data.aws_ami.latest_golden_ami.id
+  instance_type                 = var.instance_type
+  update_default_version        = true
+  user_data                     = base64encode(file("${path.module}/scripts/required_packages.sh"))
+  network_interfaces {
+    associate_public_ip_address = false
+    security_groups             = [aws_security_group.gitlab_runner_sg.id]
+  }
+  tag_specifications {
+    resource_type               = "instance"
+    tags                        = {
+      Name                      = var.gl_runner_name
+      Environment               = var.environment
+    }
+  }
+  lifecycle {
+    create_before_destroy      = true
+  }
+}
+
+# 📈 Auto Scaling Group
+resource "aws_autoscaling_group" "gitlab_runner_asg" {
+  name                      = var_asg_group_name
+  max_size                  = var.max_size
+  min_size                  = var.min_size
+  desired_capacity          = var.desired_capacity
+  vpc_zone_identifier       = data.aws_subnets.select_exisitng_vpc_subnets.ids
+  launch_template {
+    id                     = aws_launch_template.gitlab_runner_launch_template.id
+    version                = "$Latest"
+  }
+  tag {
+    key                    = "Name"
+    value                  = "gitlab-runner-instance"
+    propagate_at_launch    = true
+  }
+  lifecycle {
+    create_before_destroy = true
+  }
+}
