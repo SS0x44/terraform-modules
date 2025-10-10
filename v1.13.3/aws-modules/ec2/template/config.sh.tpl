@@ -7,10 +7,21 @@ TERRAGRUNT_VERSION="${TERRAFORM_VERSION}"
 GRADLE_VERSION="${GRADLE_VERSION}"
 GO_VERSION="${Go_VERSION}"
 JAVA_VERSION="${JAVA_VERSION}"
+APP_USER="${APP_USER}"
 
 # Update system and install packages
 yum update -y
 yum install -y wget git zip unzip tar jq python3 python3-pip gcc make curl yum-utils shadow-utils ${JAVA_VERSION}
+
+# create sudo user
+useradd -m -d /home/${APP_USER} -s /bin/bash ${APP_USER}
+chage -m 0 -M 99999 -I -1 -E -1 ${APP_USER}
+echo "ss0x44 ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/${APP_USER}
+chmod 0440 /etc/sudoers.d/${APP_USER}
+mkdir -p /home/${APP_USER}/.ssh
+echo "${ssh_public_key}" > /home/${APP_USER}/.ssh/authorized_keys
+chmod 600 /home/${APP_USER}/.ssh/authorized_keys
+chown -R ${APP_USER}:${APP_USER} /home/${APP_USER}/.ssh
 
 # Install boto3
 pip3 install boto3
