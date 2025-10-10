@@ -34,8 +34,8 @@ resource "aws_security_group" "ec2_sg" {
 #---------------------------------------------------------
 
 resource "aws_launch_template" "launch_template" {
-  depends_on                    = [aws_security_group.ec2_sg, data.aws_ami.ec2_ami]
-  image_id                      = var.ami_id != "" ? var.ami_id : data.aws_ami.ec2_ami.id
+  depends_on                    = [aws_security_group.ec2_sg, data.aws_ami.latest_golden_ami]
+  image_id                      =  data.aws_ami.latest_golden_ami.id
   instance_type                 = var.instance_type
   update_default_version        = true
   user_data                     = var.usr_data_tpl_path 
@@ -105,5 +105,6 @@ resource "aws_autoscaling_group_instance_refresh" "ec2_asg_fleet_refresh" {
     instance_warmup        = 300
   }
 }
+
 
 
