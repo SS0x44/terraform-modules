@@ -21,7 +21,7 @@ data "aws_subnets" "select_existing_vpc_subnets" {
   }
 }
 
-# Data Source 03 : AMI 
+# Data Source 03 : Role 
 #-----------------------------------------------------
 data "aws_ami" "latest_golden_ami" {
   most_recent = true
