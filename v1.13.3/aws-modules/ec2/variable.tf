@@ -2,6 +2,9 @@ variable "ec_profile" {
   type = string
 }
 
+variable "app_user" {
+type = string
+}
 variable "pipeline_role" {
   type = string
 }
