@@ -2,7 +2,7 @@ variable "ec_profile" {
   type = string
 }
 
-variable "pipeline_deployment_role" {
+variable "pipeline_role" {
   type = string
 }
 
