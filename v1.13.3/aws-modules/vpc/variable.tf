@@ -1,20 +1,32 @@
-# variables.tf
-variable "aws_account_id" {
-  type        = string
-  description = "AWS account ID"
-}
-
-variable "region" {
-  type        = string
-  description = "AWS region"
-}
-
-variable "namespace" {
-  type        = string
-  description = "Project namespace"
-}
-
-variable "env_tags" {
-  type        = map(string)
-  description = "Environment-specific tags"
-}
+variable "create_vpc" { type = bool }
+variable "region" { type = string }
+variable "cidr" { type = string }
+variable "instance_tenancy" { type = string }
+variable "enable_dns_hostnames" { type = bool }
+variable "enable_dns_support" { type = bool }
+variable "enable_network_address_usage_metrics" { type = bool }
+variable "name" { type = string }
+variable "tags" { type = map(string) }
+variable "vpc_tags" { type = map(string) }
+variable "azones" { type = list(string) }
+variable "public_subnet_names" { type = list(string) }
+variable "public_subnet_cidrs" { type = list(string) }
+variable "map_public_ip_on_launch" { type = bool }
+variable "public_subnet_private_dns_hostname_type_on_launch" { type = string }
+variable "public_subnet_tags" { type = map(string) }
+variable "create_multiple_public_route_tables" { type = bool }
+variable "public_route_table_tags" { type = map(string) }
+variable "public_subnet_suffix" { type = string }
+variable "public_acl_tags" { type = map(string) }
+variable "public_inbound_acl_rules" { type = list(map(any)) }
+variable "public_outbound_acl_rules" { type = list(map(any)) }
+variable "private_subnet_names" { type = list(string) }
+variable "private_subnets" { type = list(string) }
+variable "private_subnet_private_dns_hostname_type_on_launch" { type = string }
+variable "private_subnet_tags" { type = map(string) }
+variable "private_subnet_suffix" { type = string }
+variable "private_route_table_tags" { type = map(string) }
+variable "single_nat_gateway" { type = bool }
+variable "private_acl_tags" { type = map(string) }
+variable "private_inbound_acl_rules" { type = list(map(any)) }
+variable "private_outbound_acl_rules" { type = list(map(any)) }
