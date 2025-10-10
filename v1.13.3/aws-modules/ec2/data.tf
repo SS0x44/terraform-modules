@@ -27,7 +27,7 @@ data "aws_ami" "latest_golden_ami" {
   most_recent = true
   filter {
     name   = "name"
-    values = ["<placeholder-company-golden-ami-pattern-*>"]
+    values = ["<placeholder-ami-pattern-*>"]
   }
   filter {
     name   = "virtualization-type"
