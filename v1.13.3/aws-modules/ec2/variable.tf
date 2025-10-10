@@ -1,47 +1,67 @@
-# variables.tf
-variable "account_id" {
-  type        = string
-  description = "AWS account ID"
+variable "ec_profile" {
+  type = string
 }
-variable "region" {
-  type        = string
-  description = "AWS region"
+
+variable "pipeline_deployment_role" {
+  type = string
 }
-variable "namespace" {
-  type        = string
-  description = "Project namespace"
+
+variable "security_group" {
+  type = string
 }
-variable "env_short" {
-  type        = map(string)
-  description = "Environment-specific tags"
+
+variable "tags" {
+  type = string
 }
-variable "ami_name" {
-  description = "AMI ID for EC2 instances"
-  type        = string
+
+variable "ami_id" {
+  type = string
 }
+
 variable "instance_type" {
-  description = "EC2 instance type"
+  type = string
 }
-variable "min_size" {
-  description = "Minimum number of instances in ASG"
+
+variable "usr_data_tpl_path" {
+  type = string
 }
+
+variable "ebs_optimized" {
+  type = bool
+}
+
+variable "launch_tpl_imdsv2" {
+  type = map(string)
+}
+
+variable "ebs_device_name" {
+  type = string
+}
+
+variable "ebs_launch_tpl" {
+  type = map(any)
+}
+
+variable "ec2_name" {
+  type = string
+}
+
+variable "env_short" {
+  type = string
+}
+
+variable "autoscale_group" {
+  type = string
+}
+
 variable "max_size" {
-  description = "Maximum number of instances in ASG"
+  type = number
 }
+
+variable "min_size" {
+  type = number
+}
+
 variable "desired_capacity" {
-  description = "Desired number of instances in ASG"
+  type = number
 }
-variable "asg_group_name" {
-  description = "Name of the Auto Scaling Group"
-  type        = string
-}
-variable "runner_sg" {
-  description = "Name of the security group for GitLab Runner"
-  type        = string
-}
-variable "gl_runner_name" {
-  description = "Tag name for GitLab Runner EC2 instance"
-  type        = string
-}
-
-
