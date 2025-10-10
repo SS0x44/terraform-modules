@@ -14,6 +14,29 @@ variable "private_subnet_cidr" {
   type = list(string)
 }
 
-variable "az" {
+variable "public_azs" {
   type = list(string)
+}
+
+variable "private_azs" {
+  type = list(string)
+}
+variable "vpc_name" {
+  type = string
+}
+
+variable "public_subnet_name" {
+  type = list(string)
+}
+
+variable "private_subnet_name" {
+  type = list(string)
+}
+
+variable "public_route_name" {
+  type = string
+}
+
+variable "igw_name" {
+  type = string
 }
