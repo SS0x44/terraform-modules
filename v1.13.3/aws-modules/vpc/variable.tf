@@ -36,7 +36,13 @@ variable "private_subnet_name" {
 variable "public_route_name" {
   type = string
 }
+variable "private_route_name"  {
+  type = string
+}
+variable "private_ngw_name" {
+  type = string
+}
 
-variable "igw_name" {
+variable "public_igw_name" {
   type = string
 }
