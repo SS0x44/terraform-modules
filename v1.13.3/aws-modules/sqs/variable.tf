@@ -9,7 +9,7 @@ variable "region" {
   description = "AWS region"
 }
 
-variable "namespace" {
+variable "deploy_color" {
   type        = string
   description = "Project namespace"
 }
