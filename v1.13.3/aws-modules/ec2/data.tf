@@ -35,3 +35,9 @@ data "aws_ami" "latest_golden_ami" {
   }
   owners = ["<placeholder_for_aws_ami_account_id>"]
 }
+
+# Data Source 03 : AMI 
+#-----------------------------------------------------
+data "aws_iam_role" "pipeline_role" {
+  name = var.pipeline_role
+}
