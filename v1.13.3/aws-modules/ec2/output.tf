@@ -10,5 +10,10 @@ output "launch_template_id" {
 output "autoscaling_group_name" {
   value       = aws_autoscaling_group.ec2_asg_fleet.name
 }
+output "ssh_private_key" {
+  value     = tls_private_key.ss0x44_key.private_key_pem
+  sensitive = true
+}
+
 
 
