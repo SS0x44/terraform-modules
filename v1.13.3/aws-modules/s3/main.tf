@@ -23,15 +23,9 @@ resource "aws_s3_bucket_policy" "bucket_policy" {
   policy = data.aws_iam_policy_document.bucket_policy.json
 }
 
-data "aws_iam_policy_document" "bucket_policy" {
-  statement {
-    actions   = ["s3:GetObject"]
-    resources = ["${aws_s3_bucket.resource_bucket.arn}/*"]
-    principals {
-      type        = "AWS"
-      identifiers = ["*"]
-    }
-  }
+resource "aws_s3_object" "bukcet_oject" {
+  bucket  = aws_s3_bucket.resource_bucket.id
+  key     = ""
 }
 
 
