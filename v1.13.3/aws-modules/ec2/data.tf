@@ -27,13 +27,13 @@ data "aws_ami" "latest_golden_ami" {
   most_recent = true
   filter {
     name   = "name"
-    values = ["<placeholder-ami-pattern-*>"]
+    values = [var.ami_name]
   }
   filter {
     name   = "virtualization-type"
     values = ["hvm"]
   }
-  owners = ["<placeholder_for_aws_ami_account_id>"]
+  owners = [var.account_id]
 }
 
 # Data Source 03 : AMI 
