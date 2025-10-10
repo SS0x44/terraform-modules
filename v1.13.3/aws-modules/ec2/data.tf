@@ -2,8 +2,12 @@
 data "aws_vpc" "select_exisitng_vpc" {
   filter {
     name   = "tag:Name"
-    values = ["<placeholder-company-enterprise-vpc>"]
+    values = [var.vpc_name_tag]
   }
+  filter {
+    name   = "tag:Environment"
+    values = [var.vpc_environmet_tag]
+  }  
 }
 
 data "aws_subnets" "select_exisitng_vpc_subnets" {
