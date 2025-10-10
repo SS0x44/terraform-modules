@@ -58,6 +58,10 @@ variable "autoscale_group" {
   type = string
 }
 
+variable "ssh_key" {
+ type    = "string"
+}
+
 variable "max_size" {
   type = number
 }
