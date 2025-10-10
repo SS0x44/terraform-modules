@@ -38,7 +38,13 @@ resource "aws_launch_template" "launch_template" {
   image_id                      =  data.aws_ami.latest_golden_ami.id
   instance_type                 = var.instance_type
   update_default_version        = true
-  user_data                     = var.usr_data_tpl_path 
+  user_data                     = base64encode(templatefile(var.usr_data_tpl_path , {
+    TERRAFORM_VERSION           = var.tf_version
+    TERRAGRUNT_VERSION          = var.tg_version
+    JAVA_VERSION                = var.java_version
+    MVN_VERSION                 = var.mvn_version
+    REGION                      = var.region
+    SSH_KEY                     = var.ssh_key
   vpc_seciruty_group_ids        = [aws_security_group.ec2_sg.id]
   ebs_optimized                 = var.ebs_optimized
   metadata_options              = var.launch_tpl_imdsv2
@@ -105,6 +111,7 @@ resource "aws_autoscaling_group_instance_refresh" "ec2_asg_fleet_refresh" {
     instance_warmup        = 300
   }
 }
+
 
 
 
