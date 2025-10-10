@@ -1,20 +1,44 @@
 # variables.tf
 variable "aws_account_id" {
   type        = string
-  description = "AWS account ID"
 }
 
 variable "region" {
   type        = string
-  description = "AWS region"
 }
 
 variable "namespace" {
   type        = string
-  description = "Project namespace"
 }
 
 variable "env_tags" {
   type        = map(string)
-  description = "Environment-specific tags"
+}
+
+variable "function_name" {
+  type = string
+}
+
+variable "handler" {
+  type = string
+}
+
+variable "runtime" {
+  type = string
+}
+
+variable "timeout" {
+  type = number
+}
+
+variable "memory_size" {
+  type = number
+}
+
+variable "tags" {
+  type = map(string)
+}
+
+variable "environment_variables" {
+  type = map(string)
 }
