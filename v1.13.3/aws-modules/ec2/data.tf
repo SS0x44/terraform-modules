@@ -1,5 +1,5 @@
 # Data Source 01 : VPC 
-----------------------------------------------------
+#----------------------------------------------------
 data "aws_vpc" "select_existing_vpc" {
   filter {
     name   = "tag:Name"
@@ -12,7 +12,7 @@ data "aws_vpc" "select_existing_vpc" {
 }
 
 # Data Source 02 : VPC Subnets 
-------------------------------------------------------
+#------------------------------------------------------
 data "aws_subnets" "select_existing_vpc_subnets" {
   depends_on = [data.aws_vpc.select_existing_vpc]
   filter {
@@ -22,7 +22,7 @@ data "aws_subnets" "select_existing_vpc_subnets" {
 }
 
 # Data Source 03 : AMI 
------------------------------------------------------
+#-----------------------------------------------------
 data "aws_ami" "latest_golden_ami" {
   most_recent = true
   filter {
