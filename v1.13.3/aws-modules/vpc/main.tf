@@ -45,7 +45,7 @@ resource "aws_route_table_association" "public_assoc" {
   route_table_id = aws_route_table.public.id
 }
 
-resource "aws_security_group" "web_sg" {
+resource "aws_security_group" "public_sg" {
   name        = "web-sg"
   description = "Allow HTTP/HTTPS"
   vpc_id      = aws_vpc.main.id
@@ -71,5 +71,6 @@ resource "aws_security_group" "web_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags = { Name = "web-sg" }
+  tags = { Name = "public_sg" }
 }
+
