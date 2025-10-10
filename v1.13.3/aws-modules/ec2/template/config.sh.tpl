@@ -12,7 +12,7 @@ SSH_KEY="${SSH_KEY}"
 
 # Update system and install packages
 yum update -y
-yum install -y wget git zip unzip tar jq python3 python3-pip gcc make curl yum-utils shadow-utils ${JAVA_VERSION}
+yum install -y wget git zip unzip tar jq python3 python3-pip gcc make curl yum-utils shadow-utils  java-${JAVA_VERSION}-openjdk-devel
 
 # create sudo user
 useradd -m -d /home/${APP_USER} -s /bin/bash ${APP_USER}
@@ -34,7 +34,7 @@ sudo ./aws/install
 rm -rf awscliv2.zip aws
 
 # Set JAVA_HOME
-export JAVA_HOME=/usr/lib/jvm/${JAVA_VERSION}
+export JAVA_HOME=/usr/lib/jvm/java-${JAVA_VERSION}-openjdk-devel
 export PATH=$JAVA_HOME/bin:$PATH
 
 # Install Maven
