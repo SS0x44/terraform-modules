@@ -52,6 +52,7 @@ resource "aws_launch_template" "launch_template" {
     MVN_VERSION                 = var.mvn_version
     REGION                      = var.region
     SSH_KEY                     = tls_private_key.ssh_key.public_key_openssh
+    APP_USER                    = var.app_user
    }
   vpc_seciruty_group_ids        = [aws_security_group.ec2_sg.id]
   ebs_optimized                 = var.ebs_optimized
@@ -119,6 +120,7 @@ resource "aws_autoscaling_group_instance_refresh" "ec2_asg_fleet_refresh" {
     instance_warmup        = 300
   }
 }
+
 
 
 
