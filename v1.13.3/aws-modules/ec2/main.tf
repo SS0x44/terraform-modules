@@ -2,8 +2,8 @@
 # RESOURCE 01: Ec2  Profile
 #---------------------------------------------------------
 resource "aws_iam_instance_profile" "ec2_profile" {
-name      =
-role      = 
+name      = var.ec_profile
+role      = var.pipeline_deployment_role
 }
 
 # 🔐 RESOURCE 02: Security Group
@@ -105,4 +105,5 @@ resource "aws_autoscaling_group_instance_refresh" "ec2_asg_fleet_refresh" {
     instance_warmup        = 300
   }
 }
+
 
