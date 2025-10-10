@@ -16,5 +16,18 @@ variable "namespace" {
 
 variable "env_tags" {
   type        = map(string)
-  description = "Environment-specific tags"
+}
+
+variable "tags" {
+  type        = map(string)
+}
+variable "sqs_queues" {
+  type = list(object({
+    name               = string
+    delay_seconds      = number
+    max_message_size   = number
+    message_retention  = number
+    visibility_timeout = number
+    receive_wait_time  = number
+  }))
 }
