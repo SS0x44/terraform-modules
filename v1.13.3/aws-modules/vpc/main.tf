@@ -10,14 +10,14 @@ resource "aws_subnet" "public" {
   vpc_id                  = aws_vpc.main.id
   cidr_block              = var.public_subnet_cidr
   map_public_ip_on_launch = true
-  availability_zone       = var.az
+  availability_zone       = var.public_azs
   tags                    =  merge(var.tags,{  Name = var.public_subnet_name })
 }
 
 resource "aws_subnet" "private" {
   vpc_id                  = aws_vpc.main.id
   cidr_block              = var.private_subnet_cidr
-  availability_zone       = var.az
+  availability_zone       = var.private_azs
   tags                    =  merge(var.tags,{  Name = var.private_subnet_name })
 }
 
@@ -70,6 +70,7 @@ resource "aws_security_group" "public_sg" {
 
   tags = { Name = "public_sg" }
 }
+
 
 
 
