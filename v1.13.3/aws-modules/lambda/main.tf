@@ -1,7 +1,7 @@
 resource "aws_s3_object" "lambda_artifact" {
   count        = length(var.function_names) 
   bucket       = var.bucket_name
-  key          =  var.s3_key
+  key          = var.s3_key
   source       = var.source
   tags         = merge(var.tags,{ 
   Environment  = var.environment
@@ -25,6 +25,7 @@ resource "aws_lambda_function" "lambda_functions" {
     variables      = var.use_as_artifact_bucket ?  var.environment_variables[each.value] : null 
   }
 }
+
 
 
 
