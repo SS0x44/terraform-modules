@@ -1,15 +1,14 @@
 resource "aws_iam_role" "roles" {
-  for_each = { for i, name in var.iam_role_names : name => i }
-
-  name               = each.key
+  for_each = { for name in var.iam_role_names : name => name }
+  name = each.key
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [{
-      Effect = var.permission_effect
+      Effect = var.effect[each.key]
       Principal = {
-        Service = var.service_principal
+        Service = var.services[each.key]
       }
-      Action = "sts:AssumeRole"
+      Action = var.actions[each.key]
     }]
   })
   tags = var.tags
