@@ -11,7 +11,7 @@ variable "s3_key" {
 }
 
 variable "bucket_name" {
-type = list(string)
+type = string
 }
 
 variable "source" {
