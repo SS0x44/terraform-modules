@@ -14,31 +14,26 @@ variable "namespace" {
 variable "env_tags" {
   type        = map(string)
 }
-
 variable "function_names" {
   type = list(string)
 }
 
 variable "handlers" {
-  type = map(string)
+  type = list(string)
 }
 
-variable "runtime" {
-  type = map(string)
+variable "runtimes" {
+  type = list(string)
 }
 
 variable "timeout" {
-  type = map(number)
+  type = list(number)
 }
 
 variable "memory_size" {
- type =  map(number)
+  type = list(number)
 }
 
-variable "tags" {
-  type = map(string)
-}
-
-variable "environment_variables" {
-  type = map(string)
+variable "environment_variables_list" {
+  type = list(map(string))
 }
