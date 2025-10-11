@@ -15,24 +15,24 @@ variable "env_tags" {
   type        = map(string)
 }
 
-variable "function_name" {
-  type = string
+variable "function_names" {
+  type = list(string)
 }
 
-variable "handler" {
-  type = string
+variable "handlers" {
+  type = map(string)
 }
 
 variable "runtime" {
-  type = string
+  type = map(string)
 }
 
 variable "timeout" {
-  type = number
+  type = map(number)
 }
 
 variable "memory_size" {
-  type = number
+ type =  map(number)
 }
 
 variable "tags" {
