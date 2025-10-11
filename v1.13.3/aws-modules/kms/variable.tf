@@ -1,20 +1,14 @@
 # variables.tf
-variable "aws_account_id" {
-  type        = string
-  description = "AWS account ID"
+variable "kms_keys" {
+  type = map(object({
+    deletion_window_in_days = number
+  }))
 }
 
-variable "region" {
-  type        = string
-  description = "AWS region"
+variable "kms_roles" {
+  type = map(string)
 }
 
-variable "namespace" {
-  type        = string
-  description = "Project namespace"
-}
-
-variable "env_tags" {
-  type        = map(string)
-  description = "Environment-specific tags"
+variable "tags" {
+  type = map(string)
 }
