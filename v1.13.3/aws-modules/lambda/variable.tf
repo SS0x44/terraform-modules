@@ -7,11 +7,11 @@ variable "role_arn" {
 }
 
 variable "s3_key" {
- type = string
+ type = list(string)
 }
 
 variable "bucket_name" {
-type = string
+type = list(string)
 }
 
 variable "source" {
