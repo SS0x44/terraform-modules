@@ -1,9 +1,9 @@
 output "bucket_id" {
-  value = aws_s3_bucket.main.id
+  value = aws_s3_bucket.resource_bucket.id
 }
 
 output "bucket_arn" {
-  value = aws_s3_bucket.main.arn
+  value = aws_s3_bucket.resource_bucket.arn
 }
 
 output "versioning_status" {
@@ -11,5 +11,6 @@ output "versioning_status" {
 }
 
 output "policy_json" {
-  value = try(data.aws_iam_policy_document.bucket_policy.json, null)
+  value = data.aws_iam_policy_document.bucket_policy.json
 }
+
