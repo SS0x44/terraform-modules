@@ -6,7 +6,7 @@ type        = list(string)
 variable "tags" { 
 type        = map(string) 
 }
-variable "service_pricipal" { 
+variable "service_principal" { 
 type        = string 
 } 
 
