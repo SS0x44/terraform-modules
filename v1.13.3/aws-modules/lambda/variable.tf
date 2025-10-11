@@ -7,7 +7,7 @@ variable "region" {
   type        = string
 }
 
-variable "deploy_color" {
+variable "role_arn" {
   type        = string
 }
 
