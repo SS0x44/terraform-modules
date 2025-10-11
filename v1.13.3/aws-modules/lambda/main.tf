@@ -15,13 +15,14 @@ resource "aws_lambda_function" "lambda_functions" {
   runtime          = var.runtimes[each.value]
   timeout          = var.timeout[each.value]
   memory_size      = var.memory_size[each.value]
-  s3_bucket        = var.bucket_name 
-  s3_key           = var.s3_key[each.key] 
+  s3_bucket        = var.bucket_name[each.value]  
+  s3_key           = var.s3_key[each.value]  
   tags             = merge(var.tags, {"FunctionName" = each.key})
   environment {
     variables      = var.environment_variables[each.value] 
   }
 }
+
 
 
 
