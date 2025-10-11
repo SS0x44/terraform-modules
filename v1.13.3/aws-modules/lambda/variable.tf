@@ -37,3 +37,11 @@ variable "memory_sizes" {
 variable "environment_variables" {
   type = list(map(string))
 }
+
+variable "s3_key" {
+ type = string
+}
+
+variable "bucket_name" {
+type = string
+}
