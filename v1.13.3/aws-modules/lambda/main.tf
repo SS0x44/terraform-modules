@@ -21,7 +21,8 @@ resource "aws_lambda_function" "lambda_functions" {
   s3_key           = var.use_as_artifact_bucket ? var.s3_keys[each.key] : null
   tags             = merge(var.tags, {"FunctionName" = each.key})
   environment {
-    variables      = var.environment_variables[each.value]
+    variables      = var.use_as_artifact_bucket ?  var.environment_variables[each.value] : null 
   }
 }
+
 
