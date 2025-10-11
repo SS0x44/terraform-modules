@@ -11,9 +11,9 @@ variable "services" {
 }
 
 variable "effect" {
-  type = list(string)
+  type = string
 }
 
 variable "actions" {
-  type = list(string)
+  type = string
 }
