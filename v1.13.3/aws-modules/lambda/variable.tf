@@ -7,7 +7,7 @@ variable "region" {
   type        = string
 }
 
-variable "namespace" {
+variable "deploy_color" {
   type        = string
 }
 
