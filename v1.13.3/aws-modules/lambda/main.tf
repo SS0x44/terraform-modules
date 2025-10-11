@@ -10,7 +10,7 @@ resource "aws_lambda_function" "lambda_functions" {
   for_each = { for i, name in var.function_names : name => i }
 
   function_name    = each.key
-  role             = aws_iam_role.lambda_exec.arn
+  role             = var.role_arn
   handler          = var.handlers[each.value]
   runtime          = var.runtimes[each.value]
   timeout          = var.timeout[each.value]
@@ -22,6 +22,7 @@ resource "aws_lambda_function" "lambda_functions" {
     variables      = var.environment_variables[each.value] 
   }
 }
+
 
 
 
