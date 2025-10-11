@@ -15,5 +15,5 @@ variable "effect" {
 }
 
 variable "actions" {
-  type = string
+  type = list(string)
 }
