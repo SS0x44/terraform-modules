@@ -1,20 +1,35 @@
 # variables.tf
 variable "aws_account_id" {
   type        = string
-  description = "AWS account ID"
 }
 
 variable "region" {
   type        = string
-  description = "AWS region"
 }
 
-variable "namespace" {
+variable "deploy_color" {
   type        = string
-  description = "Project namespace"
 }
 
 variable "env_tags" {
   type        = map(string)
-  description = "Environment-specific tags"
+}
+
+"iam_role_names" { 
+type        = list(string) 
+} 
+
+variable "inline_policies" { 
+type        = list(string) 
+} 
+
+variable "tags" { 
+type        = map(string) 
+}
+variable "service_pricipal" { 
+type        = string 
+} 
+
+variable "permission_effect" { 
+type        = string 
 }
