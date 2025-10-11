@@ -1,12 +1,15 @@
-module "lambda_zip_archives" {
-  source         = "git::https://github.com/SS0x44/terraform-modules.git//v1.13.3/aws-modules/archive_zip"
-  function_names = var.function_names
-  count          = var.use_as_artifact_bucket ? 0 : 1
+resource "aws_s3_object" "lambda_artifact" {
+  count        = length(var.function_names) 
+  bucket       = var.bucket_name
+  key          =  var.s3_key
+  source       = var.source
+  tags         = merge(var.tags,{ 
+  Environment  = var.environment
+  Function     = var.function_names[count.index]
+  }
 }
 
 resource "aws_lambda_function" "lambda_functions" {
-  depends_on = [aws_iam_role_policy.lambda_s3_access]
-
   for_each = { for i, name in var.function_names : name => i }
 
   function_name    = each.key
@@ -15,14 +18,13 @@ resource "aws_lambda_function" "lambda_functions" {
   runtime          = var.runtimes[each.value]
   timeout          = var.timeout[each.value]
   memory_size      = var.memory_size[each.value]
-  filename         = var.use_as_artifact_bucket ? null : module.lambda_zip_archives[0].lambda_zip_archive[each.value].output_path
-  source_code_hash = var.use_as_artifact_bucket ? null : module.lambda_zip_archives[0].lambda_zip_archive[each.value].output_base64sha256
-  s3_bucket        = var.use_as_artifact_bucket ? var.bucket_name : null
-  s3_key           = var.use_as_artifact_bucket ? var.s3_keys[each.key] : null
+  s3_bucket        = var.bucket_name 
+  s3_key           = var.s3_key[each.key] 
   tags             = merge(var.tags, {"FunctionName" = each.key})
   environment {
     variables      = var.use_as_artifact_bucket ?  var.environment_variables[each.value] : null 
   }
 }
+
 
 
