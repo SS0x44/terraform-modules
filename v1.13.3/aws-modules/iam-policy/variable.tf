@@ -1,7 +1,7 @@
-"sid" { 
+variable "sid" { 
 type        = list(string) 
 } 
-"iam_policy_names" { 
+variable "iam_policy_names" { 
 type        = list(string) 
 } 
 variable "tags" { 
