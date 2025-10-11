@@ -3,10 +3,7 @@ resource "aws_s3_object" "lambda_artifact" {
   bucket       = var.bucket_name
   key          = var.s3_key
   source       = var.source
-  tags         = merge(var.tags,{ 
-  Environment  = var.env_short
-  Function     = var.function_names[count.index]
-  }
+  tags         = merge(var.tags,{ Function = var.function_names[count.index] }
 }
 
 resource "aws_lambda_function" "lambda_functions" {
@@ -25,6 +22,7 @@ resource "aws_lambda_function" "lambda_functions" {
     variables      = var.environment_variables[each.value] 
   }
 }
+
 
 
 
