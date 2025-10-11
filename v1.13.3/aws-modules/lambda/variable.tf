@@ -26,14 +26,14 @@ variable "runtimes" {
   type = list(string)
 }
 
-variable "timeout" {
+variable "timeouts" {
   type = list(number)
 }
 
-variable "memory_size" {
+variable "memory_sizes" {
   type = list(number)
 }
 
-variable "environment_variables_list" {
+variable "environment_variables" {
   type = list(map(string))
 }
