@@ -1,21 +1,21 @@
 # variables.tf
-variable "aws_account_id" {
-  type        = string
+variable "function_names" {
+  type = list(string)
 }
-
-variable "region" {
-  type        = string
-}
-
 variable "role_arn" {
   type        = string
 }
 
-variable "env_tags" {
-  type        = map(string)
+variable "s3_key" {
+ type = string
 }
-variable "function_names" {
-  type = list(string)
+
+variable "bucket_name" {
+type = string
+}
+
+variable "source" {
+type = string
 }
 
 variable "handlers" {
@@ -38,14 +38,3 @@ variable "environment_variables" {
   type = list(map(string))
 }
 
-variable "s3_key" {
- type = string
-}
-
-variable "bucket_name" {
-type = string
-}
-
-variable "source" {
-type = string
-}
