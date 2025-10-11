@@ -17,16 +17,35 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "bucket_sse" {
     }
   }
 }
+
+data "aws_iam_policy_document" "bucket_policy_document" {
+  statement {
+     actions = [
+      "s3:ListBucket",
+      "s3:GetBucketLocation",
+      "s3:GetObject",
+      "s3:PutObject",
+      "s3:DeleteObject",
+      "s3:ListBucketMultipartUploads",
+      "s3:AbortMultipartUpload",
+      "s3:GetObjectVersion",
+      "s3:PutObjectAcl",
+      "s3:GetObjectAcl"
+    ]
+    resources = ["${aws_s3_bucket.resource_bucket.arn}/*"]
+    principals {
+      type        = "AWS"
+      identifiers = ["*"]
+    }
+  }
+}
+
 resource "aws_s3_bucket_policy" "bucket_policy" {
   count  = var.attach_policy ? 1 : 0
   bucket = aws_s3_bucket.resource_bucket.id
   policy = data.aws_iam_policy_document.bucket_policy_document.json
 }
 
-resource "aws_s3_object" "bukcet_oject" {
-  bucket  = aws_s3_bucket.resource_bucket.id
-  key     = ""
-}
 
 
 
