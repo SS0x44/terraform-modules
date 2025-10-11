@@ -1,6 +1,9 @@
 variable "sid" { 
 type        = list(string) 
 } 
+variable "iam_roles" {
+type        = list(string) 
+}
 variable "iam_policy_names" { 
 type        = list(string) 
 } 
