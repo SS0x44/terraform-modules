@@ -45,3 +45,11 @@ variable "s3_key" {
 variable "bucket_name" {
 type = string
 }
+
+ariable "use_as_artifact_bucket" {
+ type = bool
+}
+
+variable "bucket_name" {
+type = string
+}
