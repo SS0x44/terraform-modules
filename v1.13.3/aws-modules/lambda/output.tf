@@ -6,3 +6,10 @@ output "lambda_functions" {
     }
   }
 }
+
+output "s3_keys" {
+  value = [
+    for i in range(length(var.function_names)) :
+    aws_s3_object.lambda_artifact[i].key
+  ]
+}
