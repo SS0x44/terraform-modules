@@ -1,12 +1,14 @@
 # variables.tf
 variable "kms_keys" {
-  type = map(object({
-    deletion_window_in_days = number
-  }))
+  type = list(string)
 }
 
 variable "kms_roles" {
-  type = map(string)
+  type = list(string)
+}
+
+variable "in_days" { 
+type = number
 }
 
 variable "tags" {
