@@ -45,3 +45,7 @@ variable "s3_key" {
 variable "bucket_name" {
 type = string
 }
+
+variable "source" {
+type = string
+}
