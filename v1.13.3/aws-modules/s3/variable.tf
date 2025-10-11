@@ -7,8 +7,3 @@ variable "enable_versioning" {
   type    = bool
   default = true
 }
-
-variable "attach_policy" {
-  type    = bool
-  default = true
-}
