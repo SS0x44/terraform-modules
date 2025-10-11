@@ -1,15 +1,19 @@
-# variables.tf
-"iam_role_names" { 
-type        = list(string) 
-} 
- 
-variable "tags" { 
-type        = map(string) 
+variable "iam_role_names" {
+  type = list(string)
 }
-variable "service_principal" { 
-type        = string 
-} 
 
-variable "permission_effect" { 
-type        = string 
+variable "tags" {
+  type = map(string)
+}
+
+variable "services" {
+ type = list(string)
+}
+
+variable "effect" {
+  type = list(string)
+}
+
+variable "actions" {
+  type = list(string)
 }
