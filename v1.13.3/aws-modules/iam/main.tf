@@ -7,7 +7,7 @@ resource "aws_iam_role" "roles" {
     Statement = [{
       Effect = var.permission_effect
       Principal = {
-        Service = var.service_pricipal
+        Service = var.service_principal
       }
       Action = "sts:AssumeRole"
     }]
@@ -68,3 +68,4 @@ resource "aws_iam_role_policy" "iam_inline_policies" {
     ]
   })
 }
+
