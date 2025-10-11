@@ -1,20 +1,7 @@
 # variables.tf
-variable "aws_account_id" {
-  type        = string
-  description = "AWS account ID"
+variable "topic_names" {
+  type = list(string)
 }
-
-variable "region" {
-  type        = string
-  description = "AWS region"
-}
-
-variable "namespace" {
-  type        = string
-  description = "Project namespace"
-}
-
-variable "env_tags" {
+variable "tags" {
   type        = map(string)
-  description = "Environment-specific tags"
 }
