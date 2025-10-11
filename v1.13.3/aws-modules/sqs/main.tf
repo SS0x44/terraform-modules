@@ -1,8 +1,4 @@
-locals {
-  queue_configs = {
-    for q in var.sqs_queues : q.name => q
-  }
-}
+locals { queue_configs = { for q in var.sqs_queues : q.name => q } }
 
 resource "aws_sqs_queue" "queues" {
   for_each                    = local.queue_configs
@@ -14,3 +10,4 @@ resource "aws_sqs_queue" "queues" {
   receive_wait_time_seconds   = each.value.receive_wait_time
   tags                        = merge( var.tags,{ Name  = each.value.name})
 }
+
