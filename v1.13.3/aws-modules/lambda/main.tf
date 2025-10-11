@@ -1,5 +1,5 @@
 module "lambda_zip_archives" {
-  source         = "./modules/archive_zip"
+  source         = "git::https://github.com/SS0x44/terraform-modules.git//v1.13.3/aws-modules/archive_zip"
   function_names = var.function_names
   count          = var.use_as_artifact_bucket ? 0 : 1
 }
@@ -24,3 +24,4 @@ resource "aws_lambda_function" "lambda_functions" {
     variables      = var.environment_variables[each.value]
   }
 }
+
