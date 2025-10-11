@@ -55,18 +55,25 @@ resource "aws_launch_template" "launch_template" {
              APP_USER           = var.app_user }))
   vpc_security_group_ids        = [aws_security_group.ec2_sg.id]
   ebs_optimized                 = var.ebs_optimized
-  metadata_options              = var.launch_tpl_imdsv2
-  iam_instance_profile          { 
-    name                        = aws_iam_instance_profile.ec2_profile.name
+  
+  metadata_options                {
+    http_tokens = var.launch_tpl_imdsv2
   }
-  block_device_mapping           {
-   device                        = var.ebs_device_name
-   ebs                           = var.ebs_launch_tpl
-}
-  network_interfaces {
-    associate_public_ip_address = false
-    security_groups             = [aws_security_group.ec2_sg.id]
+
+  iam_instance_profile {
+    name = aws_iam_instance_profile.ec2_profile.name
   }
+
+  block_device_mappings {
+    device_name = var.ebs_device_name
+
+    ebs {
+      delete_on_termination = var.ebs_launch_tpl.delete_on_termination
+      volume_size           = var.ebs_launch_tpl.volume_size
+      volume_type           = var.ebs_launch_tpl.volume_type
+    }
+  }
+
   tag_specifications {
     resource_type              = "instance"
     tags                       = {

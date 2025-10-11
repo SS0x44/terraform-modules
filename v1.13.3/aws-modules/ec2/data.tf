@@ -3,11 +3,11 @@
 data "aws_vpc" "select_existing_vpc" {
   filter {
     name   = "tag:Name"
-    values = [var.vpc_name_tag]
+    values = [var.vpc_name]
   }
   filter {
     name   = "tag:Environment"
-    values = [var.vpc_environment_tag]
+    values = [var.env_short]
   }
 }
 

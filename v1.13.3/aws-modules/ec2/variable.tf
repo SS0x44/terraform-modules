@@ -1,6 +1,13 @@
 variable "ec_profile" {
   type = string
 }
+variable "region" {
+  type = string
+}
+
+variable "vpc_name" {
+type = string
+}
 
 variable "app_user" {
 type = string
@@ -38,7 +45,7 @@ variable "ebs_optimized" {
 }
 
 variable "launch_tpl_imdsv2" {
-  type = map(string)
+   type    = string
 }
 
 variable "ebs_device_name" {
@@ -60,8 +67,17 @@ variable "env_short" {
 variable "autoscale_group" {
   type = string
 }
+variable "tg_version" {
+ type    = "string"
+}
+variable "mvn_version" {
+ type    = "string"
+}
 
-variable "ssh_key" {
+variable "java_version" {
+ type    = "string"
+}
+variable "tf_version" {
  type    = "string"
 }
 
