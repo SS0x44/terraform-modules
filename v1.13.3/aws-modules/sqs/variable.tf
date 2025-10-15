@@ -23,7 +23,7 @@ variable "receive_wait_time" {
 }
 
 locals {
-  sqs_config_map = {
+  queues = {
     for i in range(length(var.queue_name)) => var.name[i] => {
       delay_seconds              = var.delay_seconds[i]
       max_message_size           = var.max_message_size[i]
