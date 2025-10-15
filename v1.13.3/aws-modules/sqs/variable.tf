@@ -1,30 +1,35 @@
-# variables.tf
-variable "aws_account_id" {
-  type        = string
+variable "queue_name" {
+  type = list(string)
 }
 
-variable "region" {
-  type        = string
+variable "delay_seconds" {
+  type = list(number)
 }
 
-variable "deploy_color" {
-  type        = string
+variable "max_message_size" {
+  type = list(number)
 }
 
-variable "env_tags" {
-  type        = map(string)
+variable "message_retention" {
+  type = list(number)
 }
 
-variable "tags" {
-  type        = map(string)
+variable "visibility_timeout" {
+  type = list(number)
 }
-variable "sqs_queues" {
-  type = list(object({
-    name               = string
-    delay_seconds      = number
-    max_message_size   = number
-    message_retention  = number
-    visibility_timeout = number
-    receive_wait_time  = number
-  }))
+
+variable "receive_wait_time" {
+  type = list(number)
+}
+
+locals {
+  sqs_config_map = {
+    for i in range(length(var.queue_name)) => var.name[i] => {
+      delay_seconds              = var.delay_seconds[i]
+      max_message_size           = var.max_message_size[i]
+      message_retention_seconds  = var.message_retention[i]
+      visibility_timeout_seconds = var.visibility_timeout[i]
+      receive_wait_time_seconds  = var.receive_wait_time[i]
+    }
+  }
 }
